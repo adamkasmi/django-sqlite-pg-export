@@ -19,9 +19,7 @@ To set up your PostgreSQL and configure the migration:
    psql -c "GRANT ALL PRIVILEGES ON DATABASE your_postgres_db_name TO your_postgres_username;"
 Edit Configuration File: In your Django project's root directory, find the migrate.load file and replace the placeholders with your actual data:
 
-plaintext
-Copy code
-LOAD DATABASE
+# LOAD DATABASE
 FROM sqlite:////full/path/to/your/sqlite/db
 INTO postgresql://your_postgres_username:your_postgres_password@localhost/your_postgres_db_name
 
@@ -32,17 +30,12 @@ WITH include no tables,
      data only
 
 ALTER SCHEMA 'main' RENAME TO 'public';
-Migration with migrate.sh: Make the migration script executable and run it:
-
-bash
-Copy code
+# Migration with migrate.sh: Make the migration script executable and run it:
 chmod +x migrate.sh
 ./migrate.sh
-Update Django Settings: Modify your settings.py file to use the PostgreSQL database:
+# Update Django Settings: Modify your settings.py file to use the PostgreSQL database:
 
-python
-Copy code
-DATABASES = {
+# DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'your_postgres_db_name',
